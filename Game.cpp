@@ -6,14 +6,17 @@ const int WIDTH = 600;
 
 Game::Game() : window("Game", HEIGHT, WIDTH)
 {
-	// game init here
-	texture_.loadFromFile("ball.png");
-	sprite_.setTexture(texture_);
-    sprite_.setPosition(sf::Vector2f(100, 100));
+    srand(time(0));
 }
 
 Game::~Game()
 {
+}
+
+void Game::Init()
+{
+	// game init here
+	OnInit();
 }
 
 void Game::Update()
@@ -21,6 +24,7 @@ void Game::Update()
 	window.Update();
 
 	// objects update here
+	OnUpdate();
 }
 
 void Game::Render()
@@ -28,13 +32,12 @@ void Game::Render()
 	window.BeginDraw();
 
 	// objects draw here
-
-	window.Draw(sprite_);
+	OnDraw(window);
 
 	window.EndDraw();
 }
 
 void Game::HandleInput()
 {
-
+	OnHandleInput();
 }

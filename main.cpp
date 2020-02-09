@@ -1,23 +1,23 @@
-#include "Game.h"
-#include "Window.h"
+//#include "Game.h"
+//#include "Window.h"
 
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 
 //using namespace sf;
 
-//*
+/*
 const int RADIUS = 12;
 //*/
 
 
+#include "ArkanoidGame.h"
+
 
 int main()
 {
-    srand(time(0));
+	ArkanoidGame game;
 
-	Game game;
-
-	//game.Init();
+	game.Init();
 
 	while (!game.GetWindow()->IsDone())
 	{

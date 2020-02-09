@@ -2,13 +2,13 @@ CC=g++
 AR=ar
 #INC=-I../../
 LIBS=-lsfml-graphics -lsfml-window -lsfml-system
-#DEFINES=-DSPARK_UNICODE -DPLATFORM_LINUX
-#DEFINES=-DPLATFORM_LINUX
-FLAGS=-std=c++17
+DEFINES=
+
+FLAGS=-std=c++17 -g
 
 TARGET=first
 
-OBJECTS=main.o Game.o Window.o
+OBJECTS=main.o Game.o Window.o ArkanoidGame.o
 
 
 
@@ -18,7 +18,10 @@ all: ${TARGET}
 ${TARGET} : ${OBJECTS}
 	${CC} ${FLAGS} ${INC} ${DEFINES} ${OBJECTS} ${LIBS} -o ${TARGET}
 
-%.o : %.cpp
+main.o : main.cpp
+	${CC} ${FLAGS} ${INC} ${DEFINES} -o $@ -c $<
+
+%.o : %.cpp %.h
 	${CC} ${FLAGS} ${INC} ${DEFINES} -o $@ -c $<
 	
 ## clean all

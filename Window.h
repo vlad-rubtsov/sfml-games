@@ -20,6 +20,8 @@ public:
 	void EndDraw();
 	void Draw(sf::Drawable& drawable);
 
+	void Close() { bDone_ = true; }
+
 
 protected:
 	void Setup(const std::string& title, const sf::Vector2u& size);
@@ -28,13 +30,11 @@ protected:
 	void Destroy();
 
 private:
-
 	bool m_isFullscreen = false;
-	bool bDone_;
+	bool bDone_ = false;
 	std::string title_;
-	//sf::Vector2u size_;
-	sf::RenderWindow window;
-	sf::Vector2u m_windowSize;
+	sf::Vector2u size_;
+	sf::RenderWindow renderWindow;
 };
 
 #endif

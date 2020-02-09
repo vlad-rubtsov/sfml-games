@@ -16,11 +16,10 @@ Window::~Window()
 void Window::Setup(const std::string& title, const sf::Vector2u& size)
 {
 	title_ = title;
-	//size_  = size;
-	m_windowSize = size;
-	window.setTitle(title_);
-	//window.setSize(size_);
-	window.setFramerateLimit(60);
+	size_  = size;
+	renderWindow.setTitle(title_);
+	renderWindow.setSize(size_);
+	renderWindow.setFramerateLimit(60);
 
 	Create();
 }
@@ -28,8 +27,9 @@ void Window::Setup(const std::string& title, const sf::Vector2u& size)
 
 void Window::Update()
 {
+//*
 	sf::Event event;
-	while (window.pollEvent(event))
+	while (renderWindow.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
 		{
@@ -39,37 +39,37 @@ void Window::Update()
 		{
 			bDone_ = true;
 		}
-
 	}
+//*/
 }
 
 
 void Window::BeginDraw()
 {
-	window.clear();
+	renderWindow.clear();
 }
 
 
 void Window::EndDraw()
 {
-	window.display();
+	renderWindow.display();
 }
 
 
 void Window::Draw(sf::Drawable& drawable)
 {
-	window.draw(drawable);
+	renderWindow.draw(drawable);
 }
 
 
 void Window::Create()
 {
 	auto style = (m_isFullscreen ? sf::Style::Fullscreen : sf::Style::Default);
-	window.create({m_windowSize.x, m_windowSize.y, 32}, title_, style);
+	renderWindow.create({size_.x, size_.y, 32}, title_, style);
 }
 
 
 void Window::Destroy()
 {
-	window.close();
+	renderWindow.close();
 }

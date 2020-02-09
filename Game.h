@@ -7,23 +7,24 @@ class Game
 {
 public:
 	Game();
-	~Game();
+	virtual ~Game();
 
+	virtual void OnInit() {}
+	virtual void OnDraw(Window& window) {}
+	virtual void OnUpdate() {}
+	virtual void OnHandleInput() {}
+
+	void Init();
 	void HandleInput();
 	void Update();
 	void Render();
 	const Window* GetWindow() const { return &window; }
-	//Window* GetWindow() { return m_window; }
 
 protected:
-
-	sf::Texture texture_;
-	sf::Sprite sprite_;
 
 private:
 
 	Window window;
-
 };
 
 #endif
