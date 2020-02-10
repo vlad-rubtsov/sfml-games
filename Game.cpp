@@ -1,10 +1,11 @@
 #include "Game.h"
 
-const int HEIGHT = 600;
-const int WIDTH = 600;
 
 
-Game::Game() : window("Game", HEIGHT, WIDTH)
+Game::Game(int width, int height) 
+ : window("Game", width, height)
+ , windowWidth(width)
+ , windowHeight(height)
 {
     srand(time(0));
 }
@@ -35,6 +36,8 @@ void Game::Render()
 	OnDraw(window);
 
 	window.EndDraw();
+
+	sf::sleep(sf::seconds(0.02));
 }
 
 void Game::HandleInput()

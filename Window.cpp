@@ -1,10 +1,10 @@
 #include "Window.h"
 
 
-Window::Window(const std::string& title, uint height, uint width)
+Window::Window(const std::string& title, uint width, uint height)
 : bDone_(false)
 {
-	Setup(title, sf::Vector2u(height, width));
+	Setup(title, sf::Vector2u(width, height));
 }
 
 Window::~Window()

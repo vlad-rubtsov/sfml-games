@@ -6,7 +6,7 @@
 class Game
 {
 public:
-	Game();
+	Game(int width, int height);
 	virtual ~Game();
 
 	virtual void OnInit() {}
@@ -21,9 +21,10 @@ public:
 	const Window* GetWindow() const { return &window; }
 
 protected:
+	int windowWidth;
+	int windowHeight;
 
 private:
-
 	Window window;
 };
 
