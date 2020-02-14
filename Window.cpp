@@ -27,7 +27,6 @@ void Window::Setup(const std::string& title, const sf::Vector2u& size)
 
 void Window::Update()
 {
-//*
 	sf::Event event;
 	while (renderWindow.pollEvent(event))
 	{
@@ -35,12 +34,12 @@ void Window::Update()
 		{
 			bDone_ = true;
 		}
-		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+		if ((event.type == sf::Event::KeyPressed) && 
+			(event.key.code == sf::Keyboard::Escape))
 		{
 			bDone_ = true;
 		}
 	}
-//*/
 }
 
 

@@ -6,10 +6,9 @@ DEFINES=
 
 FLAGS=-std=c++17 -g
 
-TARGET=first
+TARGET=game
 
-OBJECTS=main.o Game.o Window.o ArkanoidGame.o
-
+OBJECTS=main.o Game.o Window.o SnakeGame.o
 
 
 all: ${TARGET}

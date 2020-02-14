@@ -1,16 +1,5 @@
-//#include "Game.h"
-//#include "Window.h"
 
-//#include <SFML/Graphics.hpp>
-
-//using namespace sf;
-
-/*
-const int RADIUS = 12;
-//*/
-
-
-#include "ArkanoidGame.h"
+#include "SnakeGame.h"
 
 const int WIDTH = 520;
 const int HEIGHT = 450;
@@ -18,7 +7,7 @@ const int HEIGHT = 450;
 
 int main()
 {
-	ArkanoidGame game(WIDTH, HEIGHT);
+	SnakeGame game(std::string("Snake"), WIDTH, HEIGHT);
 
 	game.Init();
 

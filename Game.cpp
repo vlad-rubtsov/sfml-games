@@ -1,9 +1,8 @@
 #include "Game.h"
 
 
-
-Game::Game(int width, int height) 
- : window("Game", width, height)
+Game::Game(const std::string& title, int width, int height) 
+ : window(title, width, height)
  , windowWidth(width)
  , windowHeight(height)
 {
@@ -37,7 +36,7 @@ void Game::Render()
 
 	window.EndDraw();
 
-	sf::sleep(sf::seconds(0.02));
+	//sf::sleep(sf::seconds(0.12));
 }
 
 void Game::HandleInput()

@@ -6,7 +6,7 @@
 class Game
 {
 public:
-	Game(int width, int height);
+	Game(const std::string& title, int width, int height);
 	virtual ~Game();
 
 	virtual void OnInit() {}
@@ -18,6 +18,7 @@ public:
 	void HandleInput();
 	void Update();
 	void Render();
+
 	const Window* GetWindow() const { return &window; }
 
 protected:
