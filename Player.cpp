@@ -8,14 +8,23 @@ extern int BLOCK_SIZE;
 extern float offsetX;
 extern float offsetY;
 
-const int START_POS_X = 3;
-const int START_POS_Y = 5;
+const int START_POS_X = 7;
+const int START_POS_Y = 9;
 
+const int TEXTURE_POS_Y = 244;
+
+const int IMG_WIDTH = 40;
+const int IMG_HEIGHT = 50;
+
+const float DY_STEP = 0.0005f;
+const float FRAME_STEP = 0.005f;
+
+const int FRAMES = 6;
 
 Player::Player()
 {
-	rect = sf::FloatRect(START_POS_X * BLOCK_SIZE, START_POS_Y * BLOCK_SIZE, 40, 50);
-	dx = dy = 0;
+	rect = sf::FloatRect(START_POS_X * BLOCK_SIZE, START_POS_Y * BLOCK_SIZE, IMG_WIDTH, IMG_HEIGHT);
+	dx = dy = 0.1;
 	curFrame = 0;
 	onGround = false;
 }
@@ -24,11 +33,11 @@ Player::Player()
 void Player::SetTexture(sf::Texture& texture)
 {
 	sprite.setTexture(texture);
-	sprite.setTextureRect(sf::IntRect(40 * int(curFrame), 244, 40, 50));
+	sprite.setTextureRect(sf::IntRect(IMG_WIDTH * int(curFrame), TEXTURE_POS_Y, IMG_WIDTH, IMG_HEIGHT));
 }
 
 
-void Player::Update(long long time)
+void Player::Update(float time)
 {
 	rect.left += dx * time;
 
@@ -36,22 +45,22 @@ void Player::Update(long long time)
 
 	if (!onGround)
 	{
-		dy += 0.0002 * time;
+		dy += DY_STEP * time;
 	}
 	rect.top += dy * time;
 
 	CollisionY();
 
-	curFrame += 0.002 * time;
-	if (curFrame > 6)
-		curFrame -= 6;
+	curFrame += FRAME_STEP * time;
+	if (curFrame > FRAMES)
+		curFrame -= FRAMES;
 	if (dx > 0)
 	{
-		sprite.setTextureRect(sf::IntRect(40 * int(curFrame), 244, 40, 50));
+		sprite.setTextureRect(sf::IntRect(IMG_WIDTH * int(curFrame), TEXTURE_POS_Y, IMG_WIDTH, IMG_HEIGHT));
 	}
 	if (dx < 0)
 	{
-		sprite.setTextureRect(sf::IntRect(40 * int(curFrame) + 40, 244, -40, 50));
+		sprite.setTextureRect(sf::IntRect(IMG_WIDTH * int(curFrame) + IMG_WIDTH, TEXTURE_POS_Y, -IMG_WIDTH, IMG_HEIGHT));
 	}
 
 	sprite.setPosition(rect.left - offsetX, rect.top - offsetY);
@@ -144,6 +153,6 @@ void Player::MoveRight()
 
 void Player::Jump()
 {
-	dy = -0.2;
+	dy = -0.35;
 	onGround = false;
 }

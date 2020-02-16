@@ -12,7 +12,7 @@ public:
 	Player();
 
 	void SetTexture(sf::Texture& texture);
-	void Update(long long time);
+	void Update(float time);
 
 	void MoveLeft();
 	void MoveRight();

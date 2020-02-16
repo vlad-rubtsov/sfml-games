@@ -5,7 +5,7 @@ using namespace sf;
 
 
 const float DELAY    = 0.1f;
-const int TIME_SPEED = 140;  // bigger is slower
+const int TIME_SPEED = 700;  // bigger is slower
 
 const int H = 12;
 const int W = 40;
@@ -14,6 +14,7 @@ int BLOCK_SIZE = 32;
 
 float offsetX = 0;
 float offsetY = 0;
+
 
 String tileMap[] = {
 "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
@@ -57,8 +58,12 @@ void PlatformerGame::OnInit()
 
 void PlatformerGame::OnUpdate()
 {
-	time = clock.getElapsedTime().asMicroseconds() / TIME_SPEED;
+	time = clock.getElapsedTime().asMicroseconds();
 	clock.restart();
+
+	time /= TIME_SPEED;
+	if (time > 20)
+		time = 20;
 
 	player.Update(time);
 
@@ -66,7 +71,8 @@ void PlatformerGame::OnUpdate()
 	{
 		offsetX = player.GetRect().left - windowWidth / 2;
 	}
-	offsetY = player.GetRect().top - windowHeight / 2;
+	//offsetY = player.GetRect().top - windowHeight / 2;
+	offsetY = 0;
 }
 
 

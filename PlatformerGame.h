@@ -24,7 +24,7 @@ private:
 
 	sf::Clock clock;
 
-	long long time;
+	double time;
 };
 
 #endif

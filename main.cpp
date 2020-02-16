@@ -1,8 +1,8 @@
 
 #include "PlatformerGame.h"
 
-const int WIDTH = 820;
-const int HEIGHT = 450;
+const int WIDTH = 600;
+const int HEIGHT = 400;
 
 
 int main()
