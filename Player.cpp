@@ -1,6 +1,6 @@
 #include "Player.h"
-
 #include <SFML/System/String.hpp>
+
 
 extern sf::String tileMap[];
 extern int BLOCK_SIZE;
@@ -8,9 +8,13 @@ extern int BLOCK_SIZE;
 extern float offsetX;
 extern float offsetY;
 
+const int START_POS_X = 3;
+const int START_POS_Y = 5;
+
+
 Player::Player()
 {
-	rect = sf::FloatRect(3*BLOCK_SIZE, 5 * BLOCK_SIZE, 40, 50);
+	rect = sf::FloatRect(START_POS_X * BLOCK_SIZE, START_POS_Y * BLOCK_SIZE, 40, 50);
 	dx = dy = 0;
 	curFrame = 0;
 	onGround = false;
@@ -24,7 +28,7 @@ void Player::SetTexture(sf::Texture& texture)
 }
 
 
-void Player::Update(float time)
+void Player::Update(long long time)
 {
 	rect.left += dx * time;
 
@@ -37,13 +41,6 @@ void Player::Update(float time)
 	rect.top += dy * time;
 
 	CollisionY();
-
-	if (rect.top > GROUND)
-	{
-		onGround = true;
-		dy = 0;
-		rect.top = GROUND;
-	}
 
 	curFrame += 0.002 * time;
 	if (curFrame > 6)
@@ -61,6 +58,7 @@ void Player::Update(float time)
 
 	dx = 0;
 }
+
 
 void Player::CollisionX()
 {
@@ -129,4 +127,23 @@ void Player::CollisionY()
 			onGround = false;
 		}
 	}
+}
+
+
+void Player::MoveLeft()
+{
+	dx = -0.1;
+}
+
+
+void Player::MoveRight()
+{
+	dx = 0.1;
+}
+
+
+void Player::Jump()
+{
+	dy = -0.2;
+	onGround = false;
 }

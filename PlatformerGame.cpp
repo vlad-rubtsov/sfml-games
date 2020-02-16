@@ -45,7 +45,6 @@ PlatformerGame::~PlatformerGame()
 void PlatformerGame::Reset()
 {
 	time = 0;
-	timer = 0;
 }
 
 
@@ -60,14 +59,14 @@ void PlatformerGame::OnUpdate()
 {
 	time = clock.getElapsedTime().asMicroseconds() / TIME_SPEED;
 	clock.restart();
-	timer += time;
+
 	player.Update(time);
 
-	if (player.rect.left > windowWidth / 2)
+	if (player.GetRect().left > windowWidth / 2)
 	{
-		offsetX = player.rect.left - windowWidth / 2;
+		offsetX = player.GetRect().left - windowWidth / 2;
 	}
-	offsetY = player.rect.top - windowHeight / 2;
+	offsetY = player.GetRect().top - windowHeight / 2;
 }
 
 
@@ -95,7 +94,7 @@ void PlatformerGame::OnDraw(::Window& window)
 		}
 	}
 
-	window.Draw(player.sprite);
+	window.Draw(player.GetSprite());
 }
 
 
@@ -103,18 +102,17 @@ void PlatformerGame::OnHandleInput()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		player.dx = 0.1;
+		player.MoveRight();
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		player.dx = -0.1;
+		player.MoveLeft();
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		if (player.onGround)
+		if (player.IsOnGround())
 		{
-			player.dy = -0.2;
-			player.onGround = false;
+			player.Jump();
 		}
 	}
 }

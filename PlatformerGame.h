@@ -16,20 +16,15 @@ public:
 	virtual void OnHandleInput();
 
 private:
-	//void Tick(float timer);
 	void Reset();
 
 private:
 	sf::Texture texture1;
-	//sf::Sprite sprite1;
 	Player player;
 
 	sf::Clock clock;
 
-	float time;
-	float timer;
-
-	float curFrame = 0.f;
+	long long time;
 };
 
 #endif

@@ -18,7 +18,7 @@ public:
 
 	void BeginDraw();
 	void EndDraw();
-	void Draw(sf::Drawable& drawable);
+	void Draw(const sf::Drawable& drawable);
 
 	void Close() { bDone_ = true; }
 

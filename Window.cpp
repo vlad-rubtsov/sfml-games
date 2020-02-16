@@ -55,7 +55,7 @@ void Window::EndDraw()
 }
 
 
-void Window::Draw(sf::Drawable& drawable)
+void Window::Draw(const sf::Drawable& drawable)
 {
 	renderWindow.draw(drawable);
 }

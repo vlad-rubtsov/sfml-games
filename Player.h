@@ -8,16 +8,21 @@
 
 class Player
 {
-
-	const int GROUND = 400;
-
 public:
 	Player();
 
 	void SetTexture(sf::Texture& texture);
-	void Update(float time);
+	void Update(long long time);
 
-public:
+	void MoveLeft();
+	void MoveRight();
+	void Jump();
+	bool IsOnGround() const { return onGround; }
+
+	sf::FloatRect GetRect() const { return rect; }
+	const sf::Sprite& GetSprite() const { return sprite; }
+
+protected:
 	bool onGround;
 
 	float dx;
