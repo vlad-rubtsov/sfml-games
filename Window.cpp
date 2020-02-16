@@ -45,7 +45,7 @@ void Window::Update()
 
 void Window::BeginDraw()
 {
-	renderWindow.clear();
+	renderWindow.clear(sf::Color::White);
 }
 
 

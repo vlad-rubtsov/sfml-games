@@ -1,13 +1,13 @@
 
-#include "SnakeGame.h"
+#include "PlatformerGame.h"
 
-const int WIDTH = 520;
+const int WIDTH = 820;
 const int HEIGHT = 450;
 
 
 int main()
 {
-	SnakeGame game(std::string("Snake"), WIDTH, HEIGHT);
+	PlatformerGame game(std::string("Platformer"), WIDTH, HEIGHT);
 
 	game.Init();
 

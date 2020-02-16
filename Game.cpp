@@ -36,7 +36,7 @@ void Game::Render()
 
 	window.EndDraw();
 
-	//sf::sleep(sf::seconds(0.12));
+	//sf::sleep(sf::seconds(0.002));
 }
 
 void Game::HandleInput()
