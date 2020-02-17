@@ -5,6 +5,7 @@
 
 class Window;
 
+
 class World
 {
 public:
@@ -22,6 +23,7 @@ public:
 		offsetY = y;
 	}
 
+	bool Intersects(int i, int j) const;
 
 	void Draw(::Window& window);
 

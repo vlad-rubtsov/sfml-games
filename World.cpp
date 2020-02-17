@@ -6,6 +6,16 @@ using namespace sf;
 extern int BLOCK_SIZE;
 
 
+bool World::Intersects(int i, int j) const
+{
+	if ((TileMap[i][j] == 'P') || (TileMap[i][j] == 'k') ||
+		(TileMap[i][j] == '0') || (TileMap[i][j] == 'r') || (TileMap[i][j] == 't'))
+	{
+		return true;
+	}
+	return false;
+}
+
 void World::Draw(::Window& window)
 {
 	sf::Sprite tile(texture);

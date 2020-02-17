@@ -5,11 +5,14 @@
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
+class Window;
+class World;
+
 
 class Player
 {
 public:
-	Player();
+	explicit Player(const World* pWorld);
 
 	void SetTexture(sf::Texture& texture);
 	void Update(float time);
@@ -18,6 +21,8 @@ public:
 	void MoveRight();
 	void Jump();
 	bool IsOnGround() const { return onGround; }
+
+	void Draw(::Window& window);
 
 	sf::FloatRect GetRect() const { return rect; }
 	const sf::Sprite& GetSprite() const { return sprite; }
@@ -35,6 +40,9 @@ protected:
 private:
 	void CollisionX();
 	void CollisionY();
+
+private:
+	const World* pWorld;
 };
 
 #endif

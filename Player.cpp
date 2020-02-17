@@ -1,20 +1,18 @@
 #include "Player.h"
+#include "Window.h"
+#include "World.h"
 #include <SFML/System/String.hpp>
 
 
-extern sf::String TileMap[];
 extern int BLOCK_SIZE;
 
 extern float offsetX;
 extern float offsetY;
 
-const int START_POS_X = 112;
-const int START_POS_Y = 7;
+const int START_POS_X = 100;
+const int START_POS_Y = 100;
 
 const int TEXTURE_POS_Y = 144;
-
-const int IMG_WIDTH = 15;
-const int IMG_HEIGHT = 15;
 
 const float DY_STEP = 0.0005f;
 const float FRAME_STEP = 0.005f;
@@ -22,10 +20,9 @@ const float FRAME_STEP = 0.005f;
 const int FRAMES = 3;
 
 
-Player::Player()
+Player::Player(const World* pNewWorld) : pWorld(pNewWorld) 
 {
-	//rect = sf::FloatRect(START_POS_X * BLOCK_SIZE, START_POS_Y * BLOCK_SIZE, IMG_WIDTH, IMG_HEIGHT);
-	rect = sf::FloatRect(100, 100, BLOCK_SIZE, BLOCK_SIZE);
+	rect = sf::FloatRect(START_POS_X, START_POS_Y, BLOCK_SIZE, BLOCK_SIZE);
 	dx = dy = 0.1;
 	curFrame = 0;
 	onGround = false;
@@ -35,7 +32,12 @@ Player::Player()
 void Player::SetTexture(sf::Texture& texture)
 {
 	sprite.setTexture(texture);
-	//sprite.setTextureRect(sf::IntRect(IMG_WIDTH  + 31 * int(curFrame), TEXTURE_POS_Y, IMG_WIDTH, IMG_HEIGHT));
+}
+
+
+void Player::Draw(::Window& window)
+{
+	window.Draw(sprite);
 }
 
 
@@ -77,8 +79,7 @@ void Player::CollisionX()
 	{
 		for (int j = rect.left / BLOCK_SIZE; j < (rect.left + rect.width) / BLOCK_SIZE; ++j)
 		{
-			if ((TileMap[i][j] == 'P') || (TileMap[i][j] == 'k') ||
-				(TileMap[i][j] == '0') || (TileMap[i][j] == 'r') || (TileMap[i][j] == 't'))
+			if (pWorld->Intersects(i, j))
 			{
 				if (dx > 0)
 				{
@@ -100,8 +101,7 @@ void Player::CollisionY()
 	{
 		for (int j = rect.left / BLOCK_SIZE; j < (rect.left + rect.width) / BLOCK_SIZE; ++j)
 		{
-			if ((TileMap[i][j] == 'P') || (TileMap[i][j] == 'k') ||
-				(TileMap[i][j] == '0') || (TileMap[i][j] == 'r') || (TileMap[i][j] == 't'))
+			if (pWorld->Intersects(i, j))
 			{
 				if (dy > 0)
 				{
@@ -122,7 +122,7 @@ void Player::CollisionY()
 	{
 		int i = (rect.top + rect.height) / BLOCK_SIZE;
 		int j = (rect.left + rect.width + 1) / BLOCK_SIZE;
-		if (TileMap[i][j] == ' ')
+		if (!pWorld->Intersects(i, j))
 		{
 			onGround = false;
 		}
@@ -131,7 +131,7 @@ void Player::CollisionY()
 	{
 		int i = (rect.top + rect.height) / BLOCK_SIZE;
 		int j = (rect.left -1) / BLOCK_SIZE;
-		if (TileMap[i][j] == ' ')
+		if (!pWorld->Intersects(i, j))
 		{
 			onGround = false;
 		}
