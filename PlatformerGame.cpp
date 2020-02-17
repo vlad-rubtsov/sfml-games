@@ -4,33 +4,36 @@
 using namespace sf;
 
 
+
 const float DELAY    = 0.1f;
 const int TIME_SPEED = 700;  // bigger is slower
 
-const int H = 12;
-const int W = 40;
-
-int BLOCK_SIZE = 32;
+int BLOCK_SIZE = 16;
 
 float offsetX = 0;
 float offsetY = 0;
 
-
-String tileMap[] = {
-"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-"B                                B     B",
-"B                                B     B",
-"B                                B     B",
-"B                                B0    B",
-"B         0000                BBBB     B",
-"B          00                    B     B",
-"BBB                              B     B",
-"B              BB                BB    B",
-"B              BB                      B",
-"B    B         BB         BB           B",
-"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-};
-
+//*
+sf::String TileMap[] = {
+"000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+"0                                                                                                                                                    0",
+"0                                                                                    w                                                               0",
+"0                   w                                  w                   w                                                                         0",
+"0                                      w                                       kk                                                                    0",
+"0                                                                             k  k    k    k                                                         0",
+"0                      c                                                      k      kkk  kkk  w                                                     0",
+"0                                                                       r     k       k    k                                                         0",
+"0                                                                      rr     k  k                                                                   0",
+"0                                                                     rrr      kk                                                                    0",
+"0               c    kckck                                           rrrr                                                                            0",
+"0                                      t0                           rrrrr                                                                            0",
+"0G                                     00              t0          rrrrrr            G                                                               0",
+"0           d    g       d             00              00         rrrrrrr                                                                            0",
+"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP",
+"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP",
+"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP",
+}; 
+//*/
 
 PlatformerGame::PlatformerGame(const std::string& title, int width, int height) : Game(title, width, height)
 {
@@ -51,8 +54,9 @@ void PlatformerGame::Reset()
 
 void PlatformerGame::OnInit()
 {
-	texture1.loadFromFile("images/fang.png");
+	texture1.loadFromFile("images/mario_tileset.png");
 	player.SetTexture(texture1);
+	world.SetTexture(texture1);
 }
 
 
@@ -73,33 +77,13 @@ void PlatformerGame::OnUpdate()
 	}
 	//offsetY = player.GetRect().top - windowHeight / 2;
 	offsetY = 0;
+	world.SetOffset(offsetX, offsetY);
 }
 
 
 void PlatformerGame::OnDraw(::Window& window)
 {
-	RectangleShape rectShape(sf::Vector2f(BLOCK_SIZE, BLOCK_SIZE));
-	for (int i = 0; i < H; ++i)
-	{
-		for (int j = 0; j < W; ++j)
-		{
-			if (tileMap[i][j] == 'B')
-			{
-				rectShape.setFillColor(Color::Black);
-			}
-			if (tileMap[i][j] == '0')
-			{
-				rectShape.setFillColor(Color::Green);
-			}
-			if (tileMap[i][j] == ' ')
-			{
-				continue;
-			}
-			rectShape.setPosition(j * BLOCK_SIZE - offsetX, i * BLOCK_SIZE - offsetY);
-			window.Draw(rectShape);
-		}
-	}
-
+	world.Draw(window);
 	window.Draw(player.GetSprite());
 }
 

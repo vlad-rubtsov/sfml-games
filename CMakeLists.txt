@@ -44,3 +44,4 @@ add_executable(${This} ${CoreSources} ${PlatformerGameSources})
 add_executable(platformer ${CoreSources} ${PlatformerGameSources})
 
 target_link_libraries(${This} PUBLIC ${CommonLibs})
+target_link_libraries(platformer PUBLIC ${CommonLibs})

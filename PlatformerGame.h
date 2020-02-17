@@ -3,6 +3,7 @@
 
 #include "Game.h"
 #include "Player.h"
+#include "World.h"
 
 class PlatformerGame : public Game
 {
@@ -20,9 +21,10 @@ private:
 
 private:
 	sf::Texture texture1;
-	Player player;
-
 	sf::Clock clock;
+
+	World world;
+	Player player;
 
 	double time;
 };

@@ -8,7 +8,7 @@ FLAGS=-std=c++17 -g
 
 TARGET=game
 
-OBJECTS=main.o Game.o Window.o PlatformerGame.o Player.o
+OBJECTS=main.o Game.o Window.o PlatformerGame.o Player.o World.o
 
 
 all: ${TARGET}
