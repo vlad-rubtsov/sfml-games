@@ -20,9 +20,11 @@ public:
 	void MoveLeft();
 	void MoveRight();
 	void Jump();
-	bool IsOnGround() const { return onGround; }
+	void SetOffset(float x, float y);
 
 	void Draw(::Window& window);
+
+	bool IsOnGround() const { return onGround; }
 
 	sf::FloatRect GetRect() const { return rect; }
 	const sf::Sprite& GetSprite() const { return sprite; }
@@ -43,6 +45,9 @@ private:
 
 private:
 	const World* pWorld;
+
+	float offsetX = 0;
+	float offsetY = 0;
 };
 
 #endif

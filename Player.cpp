@@ -6,9 +6,6 @@
 
 extern int BLOCK_SIZE;
 
-extern float offsetX;
-extern float offsetY;
-
 const int START_POS_X = 100;
 const int START_POS_Y = 100;
 
@@ -155,4 +152,11 @@ void Player::Jump()
 {
 	dy = -0.27;
 	onGround = false;
+}
+
+
+void Player::SetOffset(float x, float y)
+{
+	offsetX = x;
+	offsetY = y;
 }

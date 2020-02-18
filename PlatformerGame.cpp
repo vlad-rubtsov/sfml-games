@@ -58,6 +58,7 @@ void PlatformerGame::OnUpdate()
 	//offsetY = player.GetRect().top - windowHeight / 2;
 	offsetY = 0;
 	world.SetOffset(offsetX, offsetY);
+	player.SetOffset(offsetX, offsetY);
 }
 
 
