@@ -27,6 +27,9 @@ private:
 	Player player;
 
 	double time;
+
+	float offsetX = 0;
+	float offsetY = 0;
 };
 
 #endif

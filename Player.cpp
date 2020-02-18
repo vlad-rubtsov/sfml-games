@@ -8,7 +8,6 @@ extern int BLOCK_SIZE;
 
 const int START_POS_X = 100;
 const int START_POS_Y = 100;
-
 const int TEXTURE_POS_Y = 144;
 
 const float DY_STEP = 0.0005f;

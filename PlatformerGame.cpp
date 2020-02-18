@@ -4,14 +4,12 @@
 using namespace sf;
 
 
-
 const float DELAY    = 0.1f;
 const int TIME_SPEED = 700;  // bigger is slower
+const int TIME_MAX_DELAY = 20;
 
 int BLOCK_SIZE = 16;
 
-float offsetX = 0;
-float offsetY = 0;
 
 PlatformerGame::PlatformerGame(const std::string& title, int width, int height) 
 : player(&world)
@@ -46,8 +44,8 @@ void PlatformerGame::OnUpdate()
 	clock.restart();
 
 	time /= TIME_SPEED;
-	if (time > 20)
-		time = 20;
+	if (time > TIME_MAX_DELAY)
+		time = TIME_MAX_DELAY;
 
 	player.Update(time);
 
