@@ -16,6 +16,7 @@ bool World::Intersects(int i, int j) const
 	return false;
 }
 
+
 void World::Draw(::Window& window)
 {
 	sf::Sprite tile(texture);

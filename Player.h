@@ -5,6 +5,8 @@
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
+#include "AnimationHolder.h"
+
 class Window;
 class World;
 
@@ -12,7 +14,7 @@ class World;
 class Player
 {
 public:
-	explicit Player(const World* pWorld);
+	Player(const World* pWorld);
 
 	void SetTexture(sf::Texture& texture);
 	void Update(float time);
@@ -27,7 +29,6 @@ public:
 	bool IsOnGround() const { return onGround; }
 
 	sf::FloatRect GetRect() const { return rect; }
-	const sf::Sprite& GetSprite() const { return sprite; }
 
 protected:
 	bool onGround;
@@ -37,7 +38,8 @@ protected:
 	float curFrame;
 
 	sf::FloatRect rect;
-	sf::Sprite sprite;
+
+	AnimationHolder animation;
 
 private:
 	void CollisionX();

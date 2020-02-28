@@ -8,18 +8,23 @@ extern int BLOCK_SIZE;
 
 const int START_POS_X = 100;
 const int START_POS_Y = 100;
-const int TEXTURE_POS_Y = 144;
 
+const int TEXTURE_POS_X = 112;
+const int TEXTURE_POS_Y = 144;
+const int TEXTURE_STEP = 31;
+
+const float DX_VALUE = 0.1f;
+const float DY_VALUE = 0.27f;
 const float DY_STEP = 0.0005f;
 const float FRAME_STEP = 0.005f;
 
 const int FRAMES = 3;
 
 
-Player::Player(const World* pNewWorld) : pWorld(pNewWorld) 
+Player::Player(const World* pNewWorld) : pWorld(pNewWorld)
 {
 	rect = sf::FloatRect(START_POS_X, START_POS_Y, BLOCK_SIZE, BLOCK_SIZE);
-	dx = dy = 0.1;
+	dx = dy = DY_STEP;
 	curFrame = 0;
 	onGround = false;
 }
@@ -27,13 +32,14 @@ Player::Player(const World* pNewWorld) : pWorld(pNewWorld)
 
 void Player::SetTexture(sf::Texture& texture)
 {
-	sprite.setTexture(texture);
+	animation.Create("run", texture, TEXTURE_POS_X, TEXTURE_POS_Y, BLOCK_SIZE, BLOCK_SIZE, FRAMES, FRAME_STEP, TEXTURE_STEP);
+	animation.Set("run");
 }
 
 
 void Player::Draw(::Window& window)
 {
-	window.Draw(sprite);
+	animation.Draw(window.GetRender(), rect.left - offsetX, rect.top - offsetY);
 }
 
 
@@ -51,21 +57,16 @@ void Player::Update(float time)
 
 	CollisionY();
 
-	curFrame += FRAME_STEP * time;
-	if (curFrame > FRAMES)
-		curFrame -= FRAMES;
-	if (dx > 0)
+	if (dx != 0)
 	{
-		sprite.setTextureRect(sf::IntRect(112 + 31 * int(curFrame), TEXTURE_POS_Y, BLOCK_SIZE, BLOCK_SIZE));
+		animation.Flip(dx < 0);
+		animation.Play();
 	}
-	if (dx < 0)
-	{
-		sprite.setTextureRect(sf::IntRect(112 + 31 * int(curFrame) + BLOCK_SIZE, TEXTURE_POS_Y, -BLOCK_SIZE, BLOCK_SIZE));
-	}
-
-	sprite.setPosition(rect.left - offsetX, rect.top - offsetY);
+	
+	animation.Tick(time);
 
 	dx = 0;
+	animation.Pause();
 }
 
 
@@ -137,19 +138,19 @@ void Player::CollisionY()
 
 void Player::MoveLeft()
 {
-	dx = -0.1;
+	dx = -DX_VALUE;
 }
 
 
 void Player::MoveRight()
 {
-	dx = 0.1;
+	dx = DX_VALUE;
 }
 
 
 void Player::Jump()
 {
-	dy = -0.27;
+	dy = -DY_VALUE;
 	onGround = false;
 }
 
