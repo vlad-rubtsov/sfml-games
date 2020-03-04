@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "World.h"
+#include "Level.h"
 
 class PlatformerGame : public Game
 {
@@ -25,6 +26,8 @@ private:
 
 	World world;
 	Player player;
+
+	Level level;
 
 	double time;
 

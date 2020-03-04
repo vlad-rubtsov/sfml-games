@@ -11,6 +11,14 @@ class Window;
 class World;
 
 
+enum class etPlayerState
+{
+	eStay,
+	eRun,
+	eJump
+};
+
+
 class Player
 {
 public:
@@ -40,6 +48,8 @@ protected:
 	sf::FloatRect rect;
 
 	AnimationHolder animation;
+	//AnimationHolderT<PlayerState> animation;
+	etPlayerState playerState;
 
 private:
 	void CollisionX();

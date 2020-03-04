@@ -1,4 +1,5 @@
 *.o
-game
 .vscode
 build/
+game
+platformer

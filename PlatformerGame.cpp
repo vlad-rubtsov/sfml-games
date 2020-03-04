@@ -35,6 +35,8 @@ void PlatformerGame::OnInit()
 	texture1.loadFromFile("images/mario_tileset.png");
 	player.SetTexture(texture1);
 	world.SetTexture(texture1);
+
+	level.Load("Level1.tmx");
 }
 
 
@@ -53,7 +55,7 @@ void PlatformerGame::OnUpdate()
 	{
 		offsetX = player.GetRect().left - windowWidth / 2;
 	}
-	//offsetY = player.GetRect().top - windowHeight / 2;
+
 	offsetY = 0;
 	world.SetOffset(offsetX, offsetY);
 	player.SetOffset(offsetX, offsetY);

@@ -21,12 +21,15 @@ const float FRAME_STEP = 0.005f;
 const int FRAMES = 3;
 
 
-Player::Player(const World* pNewWorld) : pWorld(pNewWorld)
+Player::Player(const World* pNewWorld)
+: pWorld(pNewWorld)
 {
-	rect = sf::FloatRect(START_POS_X, START_POS_Y, BLOCK_SIZE, BLOCK_SIZE);
-	dx = dy = DY_STEP;
-	curFrame = 0;
-	onGround = false;
+	rect        = sf::FloatRect(START_POS_X, START_POS_Y, BLOCK_SIZE, BLOCK_SIZE);
+	dx          = DY_STEP;
+	dy          = DY_STEP;
+	curFrame    = 0;
+	onGround    = false;
+	playerState = etPlayerState::eRun;
 }
 
 
