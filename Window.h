@@ -15,13 +15,9 @@ public:
 	bool IsDone() const { return bDone_; }
 
 	void Update();
-
 	void BeginDraw();
-
 	void EndDraw();
-
 	void Draw(const sf::Drawable& drawable);
-
 	void Close() { bDone_ = true; }
 
 	sf::RenderWindow& GetRender() { return renderWindow; }
@@ -29,9 +25,9 @@ public:
 
 protected:
 	void Setup(const std::string& title, const sf::Vector2u& size);
-
 	void Create();
 	void Destroy();
+
 
 private:
 	bool m_isFullscreen = false;

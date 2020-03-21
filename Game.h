@@ -9,19 +9,20 @@ public:
 	Game(const std::string& title, int width, int height);
 	virtual ~Game();
 
-	virtual void OnInit() {}
-	virtual void OnDraw(Window& window) {}
-	virtual void OnUpdate() {}
-	virtual void OnHandleInput() {}
-
 	void Init();
 	void HandleInput();
 	void Update();
 	void Render();
 
-	const Window* GetWindow() const { return &window; }
+	Window& GetWindow() { return window; }
 
 protected:
+	virtual void OnInit() {}
+	virtual void OnDraw(Window& window) {}
+	virtual void OnUpdate() {}
+	virtual void OnHandleInput() {}
+	virtual void OnHandleInput(sf::Event& event) {}
+
 	int windowWidth;
 	int windowHeight;
 

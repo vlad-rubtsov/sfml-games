@@ -33,6 +33,10 @@ set(PlatformerGameSources
 	AnimationHolder.cpp
 )
 
+set(FifteenGameSources
+	FifteenGame.cpp
+)
+
 set(CommonLibs
 	Threads::Threads
 	sfml-graphics
@@ -43,7 +47,9 @@ set(CommonLibs
 
 
 #add_executable(${This} ${CoreSources} ${PlatformerGameSources})
-add_executable(platformer ${CoreSources} ${PlatformerGameSources})
+#add_executable(platformer ${CoreSources} ${PlatformerGameSources})
+add_executable(fifteen ${CoreSources} ${FifteenGameSources})
 
 #target_link_libraries(${This} PUBLIC ${CommonLibs})
-target_link_libraries(platformer PUBLIC ${CommonLibs})
+#target_link_libraries(platformer PUBLIC ${CommonLibs})
+target_link_libraries(fifteen PUBLIC ${CommonLibs})

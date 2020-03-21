@@ -27,6 +27,7 @@ void Window::Setup(const std::string& title, const sf::Vector2u& size)
 
 void Window::Update()
 {
+	/*
 	sf::Event event;
 	while (renderWindow.pollEvent(event))
 	{
@@ -40,12 +41,13 @@ void Window::Update()
 			bDone_ = true;
 		}
 	}
+	*/
 }
 
 
 void Window::BeginDraw()
 {
-	renderWindow.clear(sf::Color::White);
+	renderWindow.clear(sf::Color::Black);
 }
 
 

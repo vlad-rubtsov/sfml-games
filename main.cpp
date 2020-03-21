@@ -1,17 +1,16 @@
 
-#include "PlatformerGame.h"
+#include "FifteenGame.h"
 
 const int WIDTH = 600;
-const int HEIGHT = 400;
+const int HEIGHT = 600;
 
 
 int main()
 {
-	PlatformerGame game(std::string("Platformer"), WIDTH, HEIGHT);
-
+	FifteenGame game(std::string("15"), WIDTH, HEIGHT);
 	game.Init();
 
-	while (!game.GetWindow()->IsDone())
+	while (!game.GetWindow().IsDone())
 	{
 		game.HandleInput();
 		game.Update();
